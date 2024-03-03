@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<games>
+  <game>
+    <name>GTA 5</name>
+    <path>%USERPROFILE%\AppData\Roaming\Goldberg SocialClub Emu Saves\GTA V\0F74F4C4\</path>
+  </game>
+  <game>
+    <name>Minecraft</name>
+    <path>E:\Games\Minecraft\.minecraft\saves\</path>
+  </game>
+  <game>
+    <name>Hollow Knight</name>
+    <path>E:\Games\Hollow Knight\</path>
+  </game>
+  <game>
+    <name>admin</name>
+    <path>e:/test</path>
+  </game>
+</games>
