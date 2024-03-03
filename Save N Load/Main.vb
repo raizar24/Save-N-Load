@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Net
 
 Public Class Form1
     Dim username As String
@@ -6,6 +7,7 @@ Public Class Form1
     Dim folderPath As String
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         If Not serverIP.StartsWith("\\") Then
             serverIP = "\\" & serverIP
         End If
@@ -78,6 +80,5 @@ Public Class Form1
             MessageBox.Show("Username or Password is incorrect", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
-
 
 End Class
