@@ -6,6 +6,7 @@ Setting.XML
 
 example: 
 ````xml
+<?xml version="1.0" encoding="utf-8" ?>
 <Variable>
   <sharedFolder>\\192.168.1.100\Saves</sharedFolder>
 </Variable>
