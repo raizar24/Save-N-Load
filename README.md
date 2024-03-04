@@ -59,5 +59,5 @@ example:
 ### Log-in your account and click login
 ![image](https://github.com/raizar24/Save-N-Load/assets/76771070/ed5501d7-7665-43fd-93cf-bbc3af6a789d)
 
-### Select from a game from the List box and click Save button if you want to save or click Load button to load a game
+### Select a game from the List box and click Save button if you want to save or click Load button to load a game
 ![image](https://github.com/raizar24/Save-N-Load/assets/76771070/85d998c2-610a-4fa4-ada8-248e7330b1c9)
