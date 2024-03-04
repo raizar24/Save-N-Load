@@ -83,21 +83,25 @@ Partial Class Settings
         ' btnCancel
         ' 
         btnCancel.Enabled = False
-        btnCancel.Location = New Point(404, 238)
+        btnCancel.Image = My.Resources.Resources.icons8_cancel_50
+        btnCancel.Location = New Point(404, 251)
         btnCancel.Name = "btnCancel"
-        btnCancel.Size = New Size(114, 61)
+        btnCancel.Size = New Size(114, 79)
         btnCancel.TabIndex = 18
         btnCancel.Text = "Cancel"
+        btnCancel.TextImageRelation = TextImageRelation.ImageAboveText
         btnCancel.UseVisualStyleBackColor = True
         ' 
         ' btnSave
         ' 
         btnSave.Enabled = False
-        btnSave.Location = New Point(284, 238)
+        btnSave.Image = My.Resources.Resources.icons8_save_48
+        btnSave.Location = New Point(284, 251)
         btnSave.Name = "btnSave"
-        btnSave.Size = New Size(114, 61)
+        btnSave.Size = New Size(114, 79)
         btnSave.TabIndex = 17
         btnSave.Text = "Save"
+        btnSave.TextImageRelation = TextImageRelation.ImageAboveText
         btnSave.UseVisualStyleBackColor = True
         ' 
         ' ListBox1
@@ -139,29 +143,35 @@ Partial Class Settings
         ' 
         ' btnDelete
         ' 
+        btnDelete.Image = My.Resources.Resources.icons8_delete_30
         btnDelete.Location = New Point(462, 171)
         btnDelete.Name = "btnDelete"
-        btnDelete.Size = New Size(114, 61)
+        btnDelete.Size = New Size(114, 74)
         btnDelete.TabIndex = 12
         btnDelete.Text = "Delete"
+        btnDelete.TextImageRelation = TextImageRelation.ImageAboveText
         btnDelete.UseVisualStyleBackColor = True
         ' 
         ' btnEdit
         ' 
+        btnEdit.Image = My.Resources.Resources.icons8_edit_50
         btnEdit.Location = New Point(342, 171)
         btnEdit.Name = "btnEdit"
-        btnEdit.Size = New Size(114, 61)
+        btnEdit.Size = New Size(114, 74)
         btnEdit.TabIndex = 11
         btnEdit.Text = "Edit"
+        btnEdit.TextImageRelation = TextImageRelation.ImageAboveText
         btnEdit.UseVisualStyleBackColor = True
         ' 
         ' btnAdd
         ' 
+        btnAdd.Image = My.Resources.Resources.icons8_add_48
         btnAdd.Location = New Point(222, 171)
         btnAdd.Name = "btnAdd"
-        btnAdd.Size = New Size(114, 61)
+        btnAdd.Size = New Size(114, 74)
         btnAdd.TabIndex = 10
         btnAdd.Text = "Add"
+        btnAdd.TextImageRelation = TextImageRelation.ImageAboveText
         btnAdd.UseVisualStyleBackColor = True
         ' 
         ' txtgame
@@ -195,21 +205,25 @@ Partial Class Settings
         ' btncancel2
         ' 
         btncancel2.Enabled = False
-        btncancel2.Location = New Point(399, 242)
+        btncancel2.Image = My.Resources.Resources.icons8_cancel_50
+        btncancel2.Location = New Point(400, 261)
         btncancel2.Name = "btncancel2"
-        btncancel2.Size = New Size(114, 61)
+        btncancel2.Size = New Size(114, 76)
         btncancel2.TabIndex = 26
         btncancel2.Text = "Cancel"
+        btncancel2.TextImageRelation = TextImageRelation.ImageAboveText
         btncancel2.UseVisualStyleBackColor = True
         ' 
         ' btnsave2
         ' 
         btnsave2.Enabled = False
-        btnsave2.Location = New Point(279, 242)
+        btnsave2.Image = My.Resources.Resources.icons8_save_48
+        btnsave2.Location = New Point(280, 261)
         btnsave2.Name = "btnsave2"
-        btnsave2.Size = New Size(114, 61)
+        btnsave2.Size = New Size(114, 76)
         btnsave2.TabIndex = 25
         btnsave2.Text = "Save"
+        btnsave2.TextImageRelation = TextImageRelation.ImageAboveText
         btnsave2.UseVisualStyleBackColor = True
         ' 
         ' ListBox2
@@ -250,29 +264,35 @@ Partial Class Settings
         ' 
         ' btndelete2
         ' 
+        btndelete2.Image = My.Resources.Resources.icons8_delete_30
         btndelete2.Location = New Point(465, 175)
         btndelete2.Name = "btndelete2"
-        btndelete2.Size = New Size(114, 61)
+        btndelete2.Size = New Size(114, 80)
         btndelete2.TabIndex = 20
         btndelete2.Text = "Delete"
+        btndelete2.TextImageRelation = TextImageRelation.ImageAboveText
         btndelete2.UseVisualStyleBackColor = True
         ' 
         ' btnedit2
         ' 
+        btnedit2.Image = My.Resources.Resources.icons8_edit_50
         btnedit2.Location = New Point(345, 175)
         btnedit2.Name = "btnedit2"
-        btnedit2.Size = New Size(114, 61)
+        btnedit2.Size = New Size(114, 80)
         btnedit2.TabIndex = 19
         btnedit2.Text = "Edit"
+        btnedit2.TextImageRelation = TextImageRelation.ImageAboveText
         btnedit2.UseVisualStyleBackColor = True
         ' 
         ' btnadd2
         ' 
+        btnadd2.Image = My.Resources.Resources.icons8_add_48
         btnadd2.Location = New Point(225, 175)
         btnadd2.Name = "btnadd2"
-        btnadd2.Size = New Size(114, 61)
+        btnadd2.Size = New Size(114, 80)
         btnadd2.TabIndex = 18
         btnadd2.Text = "Add"
+        btnadd2.TextImageRelation = TextImageRelation.ImageAboveText
         btnadd2.UseVisualStyleBackColor = True
         ' 
         ' txtUser

@@ -101,11 +101,13 @@ Partial Class Form1
         btnSave.AllowDrop = True
         btnSave.BackColor = Color.PaleGreen
         btnSave.Enabled = False
+        btnSave.Image = My.Resources.Resources.icons8_save_48
         btnSave.Location = New Point(284, 145)
         btnSave.Name = "btnSave"
-        btnSave.Size = New Size(114, 61)
+        btnSave.Size = New Size(114, 76)
         btnSave.TabIndex = 7
         btnSave.Text = "Save Game"
+        btnSave.TextImageRelation = TextImageRelation.ImageAboveText
         btnSave.UseVisualStyleBackColor = False
         ' 
         ' btnLoad
@@ -113,11 +115,13 @@ Partial Class Form1
         btnLoad.AllowDrop = True
         btnLoad.BackColor = Color.Khaki
         btnLoad.Enabled = False
+        btnLoad.Image = My.Resources.Resources.icons8_load_48
         btnLoad.Location = New Point(404, 145)
         btnLoad.Name = "btnLoad"
-        btnLoad.Size = New Size(114, 61)
+        btnLoad.Size = New Size(114, 76)
         btnLoad.TabIndex = 8
         btnLoad.Text = "Load Game"
+        btnLoad.TextImageRelation = TextImageRelation.ImageAboveText
         btnLoad.UseVisualStyleBackColor = False
         ' 
         ' Label1
