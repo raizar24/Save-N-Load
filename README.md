@@ -7,7 +7,7 @@ https://support.microsoft.com/en-us/windows/file-sharing-over-a-network-in-windo
 
 ## STEP 2: Save and extract the Save n load to your game directory
 
-## STEP 3: go to the your Save N Load directory and edit the 'setting.xml' file in the save and load directory
+## STEP 3: Edit the 'setting.xml' file in the save and load directory
 
 provide the shared folder network link
 
