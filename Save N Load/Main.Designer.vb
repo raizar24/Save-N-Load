@@ -175,7 +175,7 @@ Partial Class Form1
         MaximizeBox = False
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Save N Load -- RM GARCIA"
+        Text = "Save N Load - BETA"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
