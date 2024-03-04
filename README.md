@@ -5,20 +5,22 @@
 How to share folder to a network: 
 https://support.microsoft.com/en-us/windows/file-sharing-over-a-network-in-windows-b58704b2-f53a-4b82-7bc1-80f9994725bf#ID0EBD=Windows_11
 
-## STEP 2: Edit the 'setting.xml' file in the save and load directory
+## STEP 2: Save and extract the Save n load to your game directory
+
+## STEP 3: go to the your Save N Load directory and edit the 'setting.xml' file in the save and load directory
 
 provide the shared folder network link
 
 example: 
 > _\\192.168.1.100_ is IP address of pc Server while _\saves_ is the name of the shared folder
+> \\{computer name}\saves   - this format is also applicable
 ````xml
 <?xml version="1.0" encoding="utf-8" ?>
 <Variable>
   <sharedFolder>\\192.168.1.100\Saves</sharedFolder> 
 </Variable>
 ````
-
-## STEP 3: Adding games and save paths:
+## STEP 4: Adding games and save paths:
 
 ### Click Settings
 ![image](https://github.com/raizar24/Save-N-Load/assets/76771070/6093a2f8-beec-4375-bbb3-d2e5874780c0)
@@ -34,7 +36,6 @@ example:
 
 ### click 'yes'
 ![image](https://github.com/raizar24/Save-N-Load/assets/76771070/7e11164a-7b05-42b6-8e24-37886e5eac9d)
-
 
 # Client side
 
