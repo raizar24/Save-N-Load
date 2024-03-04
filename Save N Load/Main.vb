@@ -17,7 +17,7 @@ Public Class Form1
             Exit Sub
         End If
 
-        If Not File.Exists(serverIP & "users.xml") Then
+        If Not File.Exists(serverIP & "users.xml") Or Not File.Exists(serverIP & "games.xml") Then
             CopyFile("users.xml", serverIP & "users.xml")
             CopyFile("games.xml", serverIP & "games.xml")
         End If
