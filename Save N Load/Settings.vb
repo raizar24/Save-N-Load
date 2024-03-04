@@ -9,7 +9,7 @@ Public Class Settings
     Dim xmluser = Form1.serverIP & "users.xml"
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListBox2.Items.AddRange(loadList(xmluser, "user", "username").ToArray())
-        ListBox1.Items.AddRange(loadList("games.xml", "game", "name").ToArray())
+        ListBox1.Items.AddRange(loadList(Form1.serverIP & "games.xml", "game", "name").ToArray())
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -61,7 +61,7 @@ Public Class Settings
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
         Dim selectedItem As String = ListBox1.SelectedItem
         Dim doc As XmlDocument = New XmlDocument()
-        doc.Load("games.xml")
+        doc.Load(Form1.serverIP & "games.xml")
         Dim pathNode As XmlNode = doc.SelectSingleNode($"/games/game[name='{selectedItem}']/path")
 
         txtgame.Text = ListBox1.SelectedItem
@@ -113,7 +113,7 @@ Public Class Settings
 
         If SaveMode = "add" Then
             If result = DialogResult.Yes Then
-                Dim success As Boolean = add(name, path, "games.xml", "game", "name", "path", False)
+                Dim success As Boolean = add(name, path, Form1.serverIP & "games.xml", "game", "name", "path", False)
                 If Not success Then
                     Exit Sub
                 End If
@@ -125,7 +125,7 @@ Public Class Settings
 
         If SaveMode = "edit" Then
             If result = DialogResult.Yes Then
-                edit(name, path, "games.xml", "game", "name", "path", False)
+                edit(name, path, Form1.serverIP & "games.xml", "game", "name", "path", False)
                 MessageBox.Show("Save Complete", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 MessageBox.Show("Save Cancelled", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -134,7 +134,7 @@ Public Class Settings
 
         If SaveMode = "delete" Then
             If result = DialogResult.Yes Then
-                delete(name, path, "games.xml", "game", "name")
+                delete(name, path, Form1.serverIP & "games.xml", "game", "name")
                 MessageBox.Show("Deletion Complete", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 MessageBox.Show("Deltion Cancelled", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -264,7 +264,7 @@ Public Class Settings
         btnCancel.Enabled = False
         SaveMode = ""
         ListBox1.Items.Clear()
-        ListBox1.Items.AddRange(loadList("games.xml", "game", "name").ToArray())
+        ListBox1.Items.AddRange(loadList(Form1.serverIP & "games.xml", "game", "name").ToArray())
     End Sub
 
     Sub reset2()

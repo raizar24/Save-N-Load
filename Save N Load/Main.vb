@@ -19,8 +19,10 @@ Public Class Form1
 
         If Not File.Exists(serverIP & "users.xml") Then
             CopyFile("users.xml", serverIP & "users.xml")
+            CopyFile("games.xml", serverIP & "games.xml")
         End If
-        ListBox1.Items.AddRange(loadList("games.xml", "game", "name").ToArray())
+
+        ListBox1.Items.AddRange(loadList(serverIP & "games.xml", "game", "name").ToArray())
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click

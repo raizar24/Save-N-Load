@@ -68,7 +68,7 @@ Module Mods
 
     Function GetGameSavePath(selectedGame As String) As String
         Dim xmlDoc As New XmlDocument()
-        xmlDoc.Load("games.xml")
+        xmlDoc.Load(Form1.serverIP & "games.xml")
 
         Dim pathNode As XmlNode = xmlDoc.SelectSingleNode($"/games/game[name='{selectedGame}']/path")
 
