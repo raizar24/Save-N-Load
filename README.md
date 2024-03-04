@@ -13,13 +13,20 @@ provide the shared folder network link
 
 example: 
 > _\\192.168.1.100_ is IP address of pc Server while _\saves_ is the name of the shared folder
-> \\{computer name}\saves   - this format is also applicable
 ````xml
 <?xml version="1.0" encoding="utf-8" ?>
 <Variable>
   <sharedFolder>\\192.168.1.100\Saves</sharedFolder> 
 </Variable>
 ````
+> \\{computer name}\saves   - this format is also applicable
+````xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Variable>
+  <sharedFolder>\\Administrator\Saves</sharedFolder> 
+</Variable>
+````
+
 ## STEP 4: Adding games and save paths:
 
 ### Click Settings
