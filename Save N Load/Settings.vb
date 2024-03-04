@@ -102,13 +102,12 @@ Public Class Settings
             End If
         End If
 
-
-        If SaveMode = "add" Or SaveMode = "edit" Then
-            If Not Directory.Exists(ContainsSpecialCommand(path)) Then
-                MessageBox.Show("Directory does not exist: " & path, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Exit Sub
-            End If
-        End If
+        'If SaveMode = "add" Or SaveMode = "edit" Then
+        '    If Not Directory.Exists(ContainsSpecialCommand(path)) Then
+        '        MessageBox.Show("Directory does not exist: " & path, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        '        Exit Sub
+        '    End If
+        'End If
 
         result = MessageBox.Show("Do you want to " & txtgame.Text.Trim & " to be " & SaveMode & "?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 

@@ -12,24 +12,46 @@ Public Class Form1
             serverIP = "\\" & serverIP
         End If
 
+        If Not Directory.Exists(serverIP) Then
+            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
         If Not File.Exists(serverIP & "users.xml") Then
             CopyFile("users.xml", serverIP & "users.xml")
         End If
         ListBox1.Items.AddRange(loadList("games.xml", "game", "name").ToArray())
-
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
+        If Not Directory.Exists(serverIP) Then
+            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+            Application.Exit()
+            Exit Sub
+        End If
         Dim register As New Register
         register.ShowDialog()
     End Sub
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
+        If Not Directory.Exists(serverIP) Then
+            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+            Application.Exit()
+            Exit Sub
+        End If
         Dim admin As New admin
         admin.ShowDialog()
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        If Not Directory.Exists(serverIP) Then
+            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+            Application.Exit()
+            Exit Sub
+        End If
         Dim selectedItem As String = ListBox1.SelectedItem
         folderPath = checkBackSlash(serverIP) & username & "\" & selectedItem
         Dim mostRecentlyModifiedFile As FileInfo = Nothing
@@ -48,19 +70,31 @@ Public Class Form1
     End Sub
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Dim savePath = GetGameSavePath(ListBox1.SelectedItem)
+        If Not Directory.Exists(savePath) Then
+            MessageBox.Show("Save Directory Does not exist: " & savePath, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
         CopyDirectory(savePath, folderPath)
         MessageBox.Show("Save Successful", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ListBox1.Select()
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         Dim savePath = GetGameSavePath(ListBox1.SelectedItem)
+        If Not Directory.Exists(savePath) Then
+            MessageBox.Show("Save Directory Does not exist: " & savePath, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
         CopyDirectory(folderPath, savePath)
         MessageBox.Show("Load Successful", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ListBox1.Select()
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+        If Not Directory.Exists(serverIP) Then
+            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+            Application.Exit()
+            Exit Sub
+        End If
         username = txtuser.Text
         Dim password = Encrypt(txtpass.Text)
         Dim doc As XDocument = XDocument.Load(serverIP & "users.xml")
