@@ -7,6 +7,8 @@ https://support.microsoft.com/en-us/windows/file-sharing-over-a-network-in-windo
 
 ## STEP 2: Edit the 'setting.xml' file in the save and load directory
 
+provide the shared folder network link
+
 example: 
 ````xml
 <?xml version="1.0" encoding="utf-8" ?>
