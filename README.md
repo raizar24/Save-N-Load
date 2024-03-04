@@ -10,10 +10,11 @@ https://support.microsoft.com/en-us/windows/file-sharing-over-a-network-in-windo
 provide the shared folder network link
 
 example: 
+> _\\192.168.1.100_ is IP address of pc Server while _\saves_ is the name of the shared folder
 ````xml
 <?xml version="1.0" encoding="utf-8" ?>
 <Variable>
-  <sharedFolder>\\192.168.1.100\Saves</sharedFolder>
+  <sharedFolder>\\192.168.1.100\Saves</sharedFolder> 
 </Variable>
 ````
 
