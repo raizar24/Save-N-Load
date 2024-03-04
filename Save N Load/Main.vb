@@ -7,22 +7,25 @@ Public Class Form1
     Dim folderPath As String
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            If Not serverIP.StartsWith("\\") Then
+                serverIP = "\\" & serverIP
+            End If
 
-        If Not serverIP.StartsWith("\\") Then
-            serverIP = "\\" & serverIP
-        End If
+            If Not Directory.Exists(serverIP) Then
+                MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
 
-        If Not Directory.Exists(serverIP) Then
-            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
-        End If
+            If Not File.Exists(serverIP & "users.xml") Or Not File.Exists(serverIP & "games.xml") Then
+                CopyFile("users.xml", serverIP & "users.xml")
+                CopyFile("games.xml", serverIP & "games.xml")
+            End If
 
-        If Not File.Exists(serverIP & "users.xml") Or Not File.Exists(serverIP & "games.xml") Then
-            CopyFile("users.xml", serverIP & "users.xml")
-            CopyFile("games.xml", serverIP & "games.xml")
-        End If
-
-        ListBox1.Items.AddRange(loadList(serverIP & "games.xml", "game", "name").ToArray())
+            ListBox1.Items.AddRange(loadList(serverIP & "games.xml", "game", "name").ToArray())
+        Catch err As Exception
+            MessageBox.Show("Error: " & err.Message, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
@@ -48,27 +51,31 @@ Public Class Form1
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
-        If Not Directory.Exists(serverIP) Then
-            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Me.Close()
-            Application.Exit()
-            Exit Sub
-        End If
-        Dim selectedItem As String = ListBox1.SelectedItem
-        folderPath = checkBackSlash(serverIP) & username & "\" & selectedItem
-        Dim mostRecentlyModifiedFile As FileInfo = Nothing
-        DataGridView1.Rows.Clear()
-        If Directory.Exists(folderPath) Then
-            For Each file In Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
-                Dim currentFile As New FileInfo(file)
-                If mostRecentlyModifiedFile Is Nothing OrElse currentFile.LastWriteTime > mostRecentlyModifiedFile.LastWriteTime Then
-                    mostRecentlyModifiedFile = currentFile
-                End If
-            Next
-            If mostRecentlyModifiedFile IsNot Nothing Then
-                DataGridView1.Rows.Add(mostRecentlyModifiedFile.LastWriteTime)
+        Try
+            If Not Directory.Exists(serverIP) Then
+                MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Me.Close()
+                Application.Exit()
+                Exit Sub
             End If
-        End If
+            Dim selectedItem As String = ListBox1.SelectedItem
+            folderPath = checkBackSlash(serverIP) & username & "\" & selectedItem
+            Dim mostRecentlyModifiedFile As FileInfo = Nothing
+            DataGridView1.Rows.Clear()
+            If Directory.Exists(folderPath) Then
+                For Each file In Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
+                    Dim currentFile As New FileInfo(file)
+                    If mostRecentlyModifiedFile Is Nothing OrElse currentFile.LastWriteTime > mostRecentlyModifiedFile.LastWriteTime Then
+                        mostRecentlyModifiedFile = currentFile
+                    End If
+                Next
+                If mostRecentlyModifiedFile IsNot Nothing Then
+                    DataGridView1.Rows.Add(mostRecentlyModifiedFile.LastWriteTime)
+                End If
+            End If
+        Catch err As Exception
+            MessageBox.Show("Error: " & err.Message, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Dim savePath = GetGameSavePath(ListBox1.SelectedItem)
