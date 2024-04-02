@@ -58,21 +58,7 @@ Public Class Form1
                 Application.Exit()
                 Exit Sub
             End If
-            Dim selectedItem As String = ListBox1.SelectedItem
-            folderPath = checkBackSlash(serverIP) & username & "\" & selectedItem
-            Dim mostRecentlyModifiedFile As FileInfo = Nothing
-            DataGridView1.Rows.Clear()
-            If Directory.Exists(folderPath) Then
-                For Each file In Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
-                    Dim currentFile As New FileInfo(file)
-                    If mostRecentlyModifiedFile Is Nothing OrElse currentFile.LastWriteTime > mostRecentlyModifiedFile.LastWriteTime Then
-                        mostRecentlyModifiedFile = currentFile
-                    End If
-                Next
-                If mostRecentlyModifiedFile IsNot Nothing Then
-                    DataGridView1.Rows.Add(mostRecentlyModifiedFile.LastWriteTime)
-                End If
-            End If
+            refreshgrid()
         Catch err As Exception
             MessageBox.Show("Error: " & err.Message, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -84,16 +70,19 @@ Public Class Form1
             Exit Sub
         End If
         CopyDirectory(savePath, folderPath)
+        refreshgrid()
         MessageBox.Show("Save Successful", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         Dim savePath = GetGameSavePath(ListBox1.SelectedItem)
         If Not Directory.Exists(savePath) Then
-            MessageBox.Show("Save Directory Does not exist: " & savePath, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Exit Sub
+            Directory.CreateDirectory(savePath)
+            'MessageBox.Show("Save Directory Does not exist: " & savePath, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'Exit Sub
         End If
         CopyDirectory(folderPath, savePath)
+        refreshgrid()
         MessageBox.Show("Load Successful", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
@@ -121,6 +110,24 @@ Public Class Form1
             MessageBox.Show("Login Successful", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             MessageBox.Show("Username or Password is incorrect", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Sub refreshgrid()
+        Dim selectedItem As String = ListBox1.SelectedItem
+        folderPath = checkBackSlash(serverIP) & username & "\" & selectedItem
+        Dim mostRecentlyModifiedFile As FileInfo = Nothing
+        DataGridView1.Rows.Clear()
+        If Directory.Exists(folderPath) Then
+            For Each file In Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
+                Dim currentFile As New FileInfo(file)
+                If mostRecentlyModifiedFile Is Nothing OrElse currentFile.LastWriteTime > mostRecentlyModifiedFile.LastWriteTime Then
+                    mostRecentlyModifiedFile = currentFile
+                End If
+            Next
+            If mostRecentlyModifiedFile IsNot Nothing Then
+                DataGridView1.Rows.Add(mostRecentlyModifiedFile.LastWriteTime)
+            End If
         End If
     End Sub
 
