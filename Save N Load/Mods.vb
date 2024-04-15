@@ -2,6 +2,7 @@
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports System.Xml
+Imports Microsoft.Win32
 Module Mods
     Function loadXML(ByVal value As String)
         Dim xDoc As XDocument = XDocument.Load("settings.xml")
@@ -70,7 +71,10 @@ Module Mods
         Dim xmlDoc As New XmlDocument()
         xmlDoc.Load(Form1.serverIP & "games.xml")
 
-        Dim pathNode As XmlNode = xmlDoc.SelectSingleNode($"/games/game[name='{selectedGame}']/path")
+        Dim xpathExpression = CheckXMLSingleQoute(selectedGame, "game")
+        Dim pathNode As XmlNode = xmlDoc.SelectSingleNode(xpathExpression)
+
+        'Dim pathNode As XmlNode = xmlDoc.SelectSingleNode($"/games/game[name='{selectedGame}']/path")
 
         If pathNode IsNot Nothing Then
             Return ContainsSpecialCommand(pathNode.InnerText)
@@ -101,4 +105,32 @@ Module Mods
 
         Return listNames
     End Function
+
+    Function CheckXMLSingleQoute(ByVal stringValue As String, ByVal xmlname As String)
+
+        If Not stringValue.Contains("'") Then
+            If xmlname = "game" Then
+                stringValue = $"/games/game[name='{stringValue}']/path"
+            End If
+
+            If xmlname = "user" Then
+                stringValue = $"/users/user[username='{stringValue}']/passwordHash"
+            End If
+
+            Return stringValue
+        End If
+
+        stringValue = stringValue.Replace("'", "', ""'"", '")
+        If xmlname = "game" Then
+            stringValue = $"/games/game[name=concat('{stringValue}')]/path"
+        End If
+
+        If xmlname = "user" Then
+            stringValue = $"/users/user[username='{stringValue}']/passwordHash"
+        End If
+
+        Return stringValue
+    End Function
+
+
 End Module
