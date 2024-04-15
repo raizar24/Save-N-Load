@@ -230,8 +230,12 @@ Public Class Settings
     Function add(name As String, path As String, xml As String, parent As String, child As String, child2 As String, encryption As Boolean) As Boolean
         Dim doc As XmlDocument = New XmlDocument()
         doc.Load(xml)
-
-        Dim existing As XmlElement = doc.SelectSingleNode("//" & parent & "/" & child & "[text() = '" & name & "']")
+        Dim existing As XmlElement
+        If name.Contains("'") Then
+            MessageBox.Show("Game Name must not contain single quotation mark", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return False
+        End If
+        existing = doc.SelectSingleNode("//" & parent & "/" & child & "[text() = '" & name & "']")
         If existing IsNot Nothing Then
             MessageBox.Show("Item '" & name & "' already exists.", "System Information")
             Return False
