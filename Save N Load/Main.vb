@@ -13,7 +13,7 @@ Public Class Form1
             End If
 
             If Not Directory.Exists(serverIP) Then
-                MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP & "", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
 
@@ -64,6 +64,13 @@ Public Class Form1
         End Try
     End Sub
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        If Not Directory.Exists(serverIP) Then
+            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+            Application.Exit()
+            Exit Sub
+        End If
+
         Dim savePath = GetGameSavePath(ListBox1.SelectedItem)
         If Not Directory.Exists(savePath) Then
             MessageBox.Show("Save Directory Does not exist: " & savePath, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -75,6 +82,13 @@ Public Class Form1
     End Sub
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
+        If Not Directory.Exists(serverIP) Then
+            MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+            Application.Exit()
+            Exit Sub
+        End If
+
         Dim savePath = GetGameSavePath(ListBox1.SelectedItem)
         If Not Directory.Exists(savePath) Then
             Directory.CreateDirectory(savePath)
