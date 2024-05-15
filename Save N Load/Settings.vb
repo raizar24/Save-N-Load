@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 Imports System.Xml
 Imports Microsoft.SqlServer
@@ -311,6 +312,13 @@ Public Class Settings
         btnsave2.Enabled = True
         btncancel2.Enabled = True
     End Sub
-
-
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim doc As XDocument = XDocument.Load(Form1.serverIP & "admin.xml")
+        Dim password = Encrypt(NewAdminPassword.Text.Trim())
+        doc.<passwordHash>.Value = password
+        doc.Save(Form1.serverIP & "admin.xml")
+        MessageBox.Show("Admin Password Change Successful", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        NewAdminPassword.Clear()
+        Me.Close()
+    End Sub
 End Class

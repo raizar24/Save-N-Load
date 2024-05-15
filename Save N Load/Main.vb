@@ -17,9 +17,10 @@ Public Class Form1
                 Exit Sub
             End If
 
-            If Not File.Exists(serverIP & "users.xml") Or Not File.Exists(serverIP & "games.xml") Then
+            If Not File.Exists(serverIP & "users.xml") Or Not File.Exists(serverIP & "games.xml") Or Not File.Exists(serverIP & "admin.xml") Then
                 CopyFile("users.xml", serverIP & "users.xml")
                 CopyFile("games.xml", serverIP & "games.xml")
+                CopyFile("admin.xml", serverIP & "admin.xml") ' Default password is 123123
             End If
 
             ListBox1.Items.AddRange(loadList(serverIP & "games.xml", "game", "name").ToArray())
@@ -103,17 +104,17 @@ Public Class Form1
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         If Not Directory.Exists(serverIP) Then
             MessageBox.Show("Shared folder cannot be accessed. Folder access denied: " & serverIP, "System Information", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Me.Close()
+            Close()
             Application.Exit()
             Exit Sub
         End If
         username = txtuser.Text
         Dim password = Encrypt(txtpass.Text)
-        Dim doc As XDocument = XDocument.Load(serverIP & "users.xml")
-        Dim userExists As Boolean = (From user In doc.Descendants("user")
-                                     Where user.Element("username").Value.Equals(username, StringComparison.OrdinalIgnoreCase) AndAlso
-                                          user.Element("passwordHash").Value.Equals(password)
-                                     Select user).Any()
+        Dim doc = XDocument.Load(serverIP & "users.xml")
+        Dim userExists = (From user In doc.Descendants("user")
+                          Where user.Element("username").Value.Equals(username, StringComparison.OrdinalIgnoreCase) AndAlso
+                               user.Element("passwordHash").Value.Equals(password)
+                          Select user).Any
         If userExists Then
             ListBox1.Enabled = True
             DataGridView1.Enabled = True
@@ -121,6 +122,12 @@ Public Class Form1
             btnRegister.Enabled = False
             btnSave.Enabled = True
             btnLoad.Enabled = True
+            btnLogin.Visible = False
+            btnRegister.Visible = False
+            LogoutButton.Visible = True
+            txtuser.Enabled = False
+            txtpass.Enabled = False
+            refreshgrid()
             MessageBox.Show("Login Successful", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             MessageBox.Show("Username or Password is incorrect", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -145,4 +152,25 @@ Public Class Form1
         End If
     End Sub
 
+    Sub clearGrid()
+        DataGridView1.Rows.Clear()
+    End Sub
+
+    Private Sub Logout_Click(sender As Object, e As EventArgs) Handles LogoutButton.Click
+        ListBox1.Enabled = False
+        DataGridView1.Enabled = False
+        btnLogin.Enabled = True
+        btnRegister.Enabled = True
+        btnSave.Enabled = False
+        btnLoad.Enabled = False
+        btnLogin.Visible = True
+        btnRegister.Visible = True
+        LogoutButton.Visible = False
+        txtuser.Enabled = True
+        txtpass.Enabled = True
+        clearGrid()
+        txtuser.Clear()
+        txtpass.Clear()
+        MessageBox.Show("Logout Successful", "System Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
 End Class
