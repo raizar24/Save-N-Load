@@ -45,15 +45,21 @@ Partial Class Settings
         btnedit2 = New Button()
         btnadd2 = New Button()
         txtUser = New TextBox()
+        TabPage3 = New TabPage()
+        Button1 = New Button()
+        Label5 = New Label()
+        NewAdminPassword = New TextBox()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         TabPage2.SuspendLayout()
+        TabPage3.SuspendLayout()
         SuspendLayout()
         ' 
         ' TabControl1
         ' 
         TabControl1.Controls.Add(TabPage1)
         TabControl1.Controls.Add(TabPage2)
+        TabControl1.Controls.Add(TabPage3)
         TabControl1.Location = New Point(12, 12)
         TabControl1.Name = "TabControl1"
         TabControl1.SelectedIndex = 0
@@ -303,9 +309,49 @@ Partial Class Settings
         txtUser.Size = New Size(270, 23)
         txtUser.TabIndex = 17
         ' 
+        ' TabPage3
+        ' 
+        TabPage3.Controls.Add(Button1)
+        TabPage3.Controls.Add(Label5)
+        TabPage3.Controls.Add(NewAdminPassword)
+        TabPage3.Location = New Point(4, 24)
+        TabPage3.Name = "TabPage3"
+        TabPage3.Padding = New Padding(3)
+        TabPage3.Size = New Size(588, 407)
+        TabPage3.TabIndex = 2
+        TabPage3.Text = "Admin Password"
+        TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(100, 60)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(79, 23)
+        Button1.TabIndex = 25
+        Button1.Text = "Save"
+        Button1.TextImageRelation = TextImageRelation.ImageAboveText
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(7, 25)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(87, 15)
+        Label5.TabIndex = 24
+        Label5.Text = "New Password:"
+        ' 
+        ' NewAdminPassword
+        ' 
+        NewAdminPassword.Location = New Point(100, 22)
+        NewAdminPassword.Name = "NewAdminPassword"
+        NewAdminPassword.PasswordChar = "*"c
+        NewAdminPassword.Size = New Size(270, 23)
+        NewAdminPassword.TabIndex = 22
+        ' 
         ' Settings
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(620, 459)
         Controls.Add(TabControl1)
@@ -317,6 +363,8 @@ Partial Class Settings
         TabPage1.PerformLayout()
         TabPage2.ResumeLayout(False)
         TabPage2.PerformLayout()
+        TabPage3.ResumeLayout(False)
+        TabPage3.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -343,4 +391,8 @@ Partial Class Settings
     Friend WithEvents btnsave2 As Button
     Friend WithEvents btnCancel As Button
     Friend WithEvents btncancel2 As Button
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents Label5 As Label
+    Friend WithEvents NewAdminPassword As TextBox
+    Friend WithEvents Button1 As Button
 End Class

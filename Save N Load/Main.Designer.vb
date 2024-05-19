@@ -35,6 +35,7 @@ Partial Class Form1
         Label2 = New Label()
         btnSettings = New Button()
         txtuser = New TextBox()
+        LogoutButton = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -158,11 +159,22 @@ Partial Class Form1
         txtuser.Size = New Size(109, 23)
         txtuser.TabIndex = 1
         ' 
+        ' LogoutButton
+        ' 
+        LogoutButton.Location = New Point(404, 12)
+        LogoutButton.Name = "LogoutButton"
+        LogoutButton.Size = New Size(75, 23)
+        LogoutButton.TabIndex = 13
+        LogoutButton.Text = "Logout"
+        LogoutButton.UseVisualStyleBackColor = True
+        LogoutButton.Visible = False
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(554, 335)
+        Controls.Add(LogoutButton)
         Controls.Add(txtuser)
         Controls.Add(btnSettings)
         Controls.Add(Label2)
@@ -196,5 +208,6 @@ Partial Class Form1
     Friend WithEvents btnSettings As Button
     Friend WithEvents txtuser As TextBox
     Friend WithEvents DateModified As DataGridViewTextBoxColumn
+    Friend WithEvents LogoutButton As Button
 
 End Class
