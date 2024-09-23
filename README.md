@@ -35,7 +35,7 @@ example:
 ### Click Settings
 ![image](https://github.com/raizar24/Save-N-Load/assets/76771070/6093a2f8-beec-4375-bbb3-d2e5874780c0)
 
-### Password: admin
+### Password: 123123
 ![image](https://github.com/raizar24/Save-N-Load/assets/76771070/f0bf98a2-196c-4d59-b5e2-e823ad37ca8d)
 
 ### Click 'add'
