@@ -118,6 +118,7 @@ Partial Class Settings
         ListBox1.Location = New Point(7, 18)
         ListBox1.Name = "ListBox1"
         ListBox1.Size = New Size(211, 364)
+        ListBox1.Sorted = True
         ListBox1.TabIndex = 16
         ' 
         ' Label2
@@ -351,7 +352,7 @@ Partial Class Settings
         ' 
         ' Settings
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(620, 459)
         Controls.Add(TabControl1)

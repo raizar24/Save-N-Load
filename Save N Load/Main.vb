@@ -17,11 +17,19 @@ Public Class Form1
                 Exit Sub
             End If
 
-            If Not File.Exists(serverIP & "users.xml") Or Not File.Exists(serverIP & "games.xml") Or Not File.Exists(serverIP & "admin.xml") Then
+            If Not File.Exists(serverIP & "users.xml") Then
                 CopyFile("users.xml", serverIP & "users.xml")
+            End If
+
+            If Not File.Exists(serverIP & "games.xml") Then
                 CopyFile("games.xml", serverIP & "games.xml")
+            End If
+
+
+            If Not File.Exists(serverIP & "admin.xml") Then
                 CopyFile("admin.xml", serverIP & "admin.xml") ' Default password is 123123
             End If
+
 
             ListBox1.Items.AddRange(loadList(serverIP & "games.xml", "game", "name").ToArray())
         Catch err As Exception

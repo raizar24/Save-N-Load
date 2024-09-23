@@ -74,6 +74,7 @@ Partial Class Form1
         ListBox1.Location = New Point(12, 52)
         ListBox1.Name = "ListBox1"
         ListBox1.Size = New Size(249, 274)
+        ListBox1.Sorted = True
         ListBox1.TabIndex = 5
         ' 
         ' DataGridView1
