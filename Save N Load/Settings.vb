@@ -65,6 +65,9 @@ Public Class Settings
         doc.Load(Form1.serverIP & "games.xml")
 
         Dim xpathExpression = CheckXMLSingleQoute(selectedItem, "game")
+        If xpathExpression.Equals(String.Empty) Then
+            Exit Sub
+        End If
         Dim pathNode As XmlNode = doc.SelectSingleNode(xpathExpression)
 
         txtgame.Text = ListBox1.SelectedItem

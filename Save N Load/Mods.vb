@@ -108,9 +108,26 @@ Module Mods
 
     Function CheckXMLSingleQoute(ByVal stringValue As String, ByVal xmlname As String)
 
-        If Not stringValue.Contains("'") Then
+        Try
+            If stringValue Is Nothing Then
+                Return String.Empty
+            End If
+
+            If Not stringValue.Contains("'") Then
+                If xmlname = "game" Then
+                    stringValue = $"/games/game[name='{stringValue}']/path"
+                End If
+
+                If xmlname = "user" Then
+                    stringValue = $"/users/user[username='{stringValue}']/passwordHash"
+                End If
+
+                Return stringValue
+            End If
+
+            stringValue = stringValue.Replace("'", "', ""'"", '")
             If xmlname = "game" Then
-                stringValue = $"/games/game[name='{stringValue}']/path"
+                stringValue = $"/games/game[name=concat('{stringValue}')]/path"
             End If
 
             If xmlname = "user" Then
@@ -118,18 +135,12 @@ Module Mods
             End If
 
             Return stringValue
-        End If
 
-        stringValue = stringValue.Replace("'", "', ""'"", '")
-        If xmlname = "game" Then
-            stringValue = $"/games/game[name=concat('{stringValue}')]/path"
-        End If
-
-        If xmlname = "user" Then
-            stringValue = $"/users/user[username='{stringValue}']/passwordHash"
-        End If
-
-        Return stringValue
+        Catch e As NullReferenceException
+            Return String.Empty
+        Catch e As Exception
+            Return String.Empty
+        End Try
     End Function
 
 
