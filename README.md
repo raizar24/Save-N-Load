@@ -1,5 +1,7 @@
 #DEPRECATED
 
+### THIS REPOSITORY IS REPLACED WITH https://github.com/raizar24/Auto-Save-n-Load 
+
 Computer rentals are typically configured with Deep Freeze to prevent any installations or changes after a restart, which also means that data from offline games is not saved. The Save-N-Load program allows users to create an account and upload their offline game save files to a server, ensuring data persistence across sessions
 
 
